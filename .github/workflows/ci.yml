@@ -1,0 +1,29 @@
+# Placeholder CI workflow — ships inert on purpose.
+#
+# This file is bundled as a one-time part of the AI-Wrapper template
+# download. From the moment this project exists as a real repository,
+# editing it is a protected configuration-file change under the root
+# CLAUDE.md (see "Protected actions" — Configuration files) and requires
+# the same explicit user authorization as any other CI/CD pipeline change —
+# an agent should never "just fix" this file as a side effect of another task.
+#
+# Replace the placeholder job below with your real build/test pipeline once
+# a subproject actually exists to run it against.
+
+name: CI (placeholder)
+
+on:
+  workflow_dispatch: {}
+  # Uncomment once there's real code to run against:
+  # push:
+  #   branches: [main]
+  # pull_request:
+  #   branches: [main]
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Nothing to build yet
+        run: echo "Replace this workflow with your real backend/frontend pipelines."
