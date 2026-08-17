@@ -35,7 +35,7 @@ This file is an index, not a procedure document — the actual rules live one-pe
 |------|-------|--------|------------------------------|
 | Overseer | 3 | 05, 10, 11, 12, 13 | 01, 02, 03, 04, 06, 07, 08, 09, 14, 15, 16, 17, 18, 19, 20 |
 | *(project) architect* | 3 | 05, 08, 10, 11, 12, 13 | 01, 02, 03, 04, 06, 07, 09, 14, 15, 16, 17, 18, 19, 20 |
-| BackEnd-Dev / FrontEnd-Dev | 2 | 05, 08, 13 | 02, 03, 06, 07, 09, 10, 11, 12, 15, 16, 17, 18, 19, 20 |
+| TaxEngineApi-Dev / TaxEngineWeb-Dev | 2 | 05, 08, 13 | 02, 03, 06, 07, 09, 10, 11, 12, 15, 16, 17, 18, 19, 20 |
 | *(any Level 1 scribe you add)* | 1 | 05, 13 | 10, 11, 15, 16, 20 (rarely — most Level 1 work is narrow enough not to trigger these) |
 
 This table is the source of truth for which skills apply to which role — an agent file's own `Mandatory reading` list should match it. When you add a new persona, add its row here in the same pass, not as a follow-up.
