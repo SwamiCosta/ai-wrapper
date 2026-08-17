@@ -1,5 +1,5 @@
 # Overseer — Global Architect
-# Project: AI-Wrapper (rename this line once you've renamed the project)
+# Project: Tax Calculator Engine
 # Level: 3
 # Scope: cross-project
 

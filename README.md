@@ -1,41 +1,30 @@
-# AI-Wrapper
+# Tax Calculator Engine
 
-A generic starter kit for running software projects with AI coding agents under a defined autonomy hierarchy — extracted from a production multi-project workspace, stripped of anything specific to that workspace's own product or stack.
+A system that calculates U.S. federal income tax (2025 tax year) from a
+contributor's filing status, gross income, standard deduction, and withholding,
+returning a detailed per-bracket breakdown. See `ARCHITECTURE.md` for the full
+business rules and domain model.
 
-`CLAUDE.md` and `.claude/skills/*.md` are the canonical rules — this file is a guided tour of them, not a replacement. If anything below ever seems to disagree with `CLAUDE.md`, `CLAUDE.md` wins, and the disagreement is a documentation bug to fix, not a choice to make.
-
----
-
-## Quick start
-
-1. **Clone this template** into your new project's location:
-   ```
-   git clone https://github.com/SwamiCosta/ai-wrapper.git my-project
-   cd my-project
-   ```
-2. **Open it with your AI coding agent** and invoke Overseer (`.claude/agents/overseer.md`). On a freshly-cloned, uncustomized copy, Overseer's job is to walk you through the rest of this list — you can also just do it yourself:
-3. **Fill in `ARCHITECTURE.md`** — what the project is, its stack, its subprojects, its phased plan. An agent treats a blank `ARCHITECTURE.md` as a blocking gap, not something to guess at.
-4. **Rename `backend/` and `frontend/`** to your real subproject names (or delete the one you don't need, or add a third sibling folder the same way). Rename their agent files and personas too — `BackEnd-Dev`, `FrontEnd-Dev`, and `Overseer` itself are placeholder names with zero behavior attached; only the Level 1/2/3 shape underneath matters.
-5. **Update the root `.gitignore`** to exclude each renamed subproject folder — each one becomes its own independent Git repository, the same way `backend/` and `frontend/` already are in this template (see "How the repositories are laid out," below).
-6. **Fill in each subproject's `CLAUDE.md`** — its real stack table, its "Local environment assumptions" (what's expected to already be running before an agent touches it), and, for a backend, its non-negotiable architecture rules.
-7. **Decide your branch-tier depth and backlog tool** and record both in the root `CLAUDE.md` — see "Two decisions this template doesn't make for you," below.
-8. **Write down your project's actual business rules** in `ARCHITECTURE.md`. This is the step most worth not skipping — an agent that has to guess a business rule from code alone will eventually guess wrong (see Skill 13, Ask Before Inferring).
-
-Once these are done, mark the "Getting started" section in `CLAUDE.md` as complete in its changelog footer — it describes a one-time setup, not an ongoing rule.
+This project runs on the [AI-Wrapper](https://github.com/SwamiCosta/ai-wrapper)
+governance template — the three-tier autonomy model, protected actions, and process
+skills. `CLAUDE.md` and `.claude/skills/*.md` are the canonical rules — this file is
+a guided tour of them, not a replacement. If anything below ever seems to disagree
+with `CLAUDE.md`, `CLAUDE.md` wins, and the disagreement is a documentation bug to
+fix, not a choice to make.
 
 ---
 
 ## How the repositories are laid out
 
-The root of this template tracks **shared governance documentation only** — `CLAUDE.md`, `ARCHITECTURE.md`, `.claude/`. Every subproject folder (`backend/`, `frontend/`, or whatever you rename/add) is meant to be **its own independent Git repository**, excluded from the root via `.gitignore`.
+The root of this repo tracks **shared governance documentation only** — `CLAUDE.md`, `ARCHITECTURE.md`, `.claude/`. Each subproject folder (`tax-engine-api/`, `tax-engine-web/`) is its own independent Git repository, excluded from the root via `.gitignore`.
 
-This template already demonstrates the pattern: `backend/` and `frontend/` are real, separately-initialized Git repositories in this template's own history — clone this repo and you'll get the root governance docs, but you'll need to clone (or `git init`) each subproject separately, the same way you would in any project built on this template.
+Clone this repo and you'll get the root governance docs; clone (or `git init`) each subproject separately into its corresponding subdirectory.
 
 Why split it this way: an agent operating inside a subproject only needs that subproject's code and its own `.claude/agents/*.md` — keeping subprojects as separate repositories means an isolated agent worktree or a partial clone doesn't accidentally pull in unrelated code, and each subproject can have its own commit history, its own CI, and eventually its own release cadence.
 
 ---
 
-## What's in this template
+## What's in this repo
 
 ```
 ai-wrapper/
@@ -47,15 +36,15 @@ ai-wrapper/
 │   ├── SKILLS.md                ← index of the 20 workspace-wide skills
 │   ├── skills/                  ← one file per skill, 01 through 20
 │   └── agents/overseer.md       ← Level 3 — global architect
-├── backend/                     ← rename this to your real backend project
+├── tax-engine-api/               ← backend, own Git repository
 │   ├── CLAUDE.md, Dockerfile, .gitignore
-│   └── .claude/agents/backend-dev.md    ← Level 2 — backend developer
-└── frontend/                    ← rename this to your real frontend project
+│   └── .claude/agents/taxengineapi-dev.md   ← Level 2 — backend developer
+└── tax-engine-web/               ← frontend (stretch goal), own Git repository
     ├── CLAUDE.md, Dockerfile, .gitignore
-    └── .claude/agents/frontend-dev.md   ← Level 2 — frontend developer
+    └── .claude/agents/taxengineweb-dev.md   ← Level 2 — frontend developer
 ```
 
-`backend/` and `frontend/` are placeholders, not a mandated shape — rename them, drop the one you don't need, or add more sibling projects the same way. See `.claude/skills/05-project-level-skills.md` for when a new subproject deserves its own skills folder.
+See `.claude/skills/05-project-level-skills.md` for when a new subproject deserves its own skills folder.
 
 ---
 
@@ -63,10 +52,10 @@ ai-wrapper/
 
 Every agent declares itself as one of three levels in its own `.md` file. Each level inherits everything the level below it can do.
 
-| Level | Name in this template | Can do | Can't do |
+| Level | Name in this project | Can do | Can't do |
 |---|---|---|---|
-| **1** | *(none shipped by default — add one if you need it)* | Read any file; create/edit code and docs | Any Git operation, any DB operation, touch config/dependencies, touch infrastructure |
-| **2** | BackEnd-Dev, FrontEnd-Dev | Everything L1 can, plus: push to `task/*` branches, open PRs, `SELECT` up to 100 rows | Merge/rebase/delete branches, force push, write to the DB, touch config/dependencies without authorization |
+| **1** | *(none in use yet — add one if needed)* | Read any file; create/edit code and docs | Any Git operation, any DB operation, touch config/dependencies, touch infrastructure |
+| **2** | TaxEngineApi-Dev, TaxEngineWeb-Dev | Everything L1 can, plus: push to `task/*` branches, open PRs, `SELECT` up to 100 rows | Merge/rebase/delete branches, force push, write to the DB, touch config/dependencies without authorization |
 | **3** | Overseer | Everything L2 can, plus: propose changes to config/dependencies/`.md` docs via PR, plan multi-step work, propose version bumps | Approve or merge any PR, take any irreversible action without explicit authorization |
 
 A fixed list of **protected actions** — destructive Git operations, any DB write or unbounded read, infrastructure changes, dependency changes, config-file edits — is never executed by *any* level without the human explicitly authorizing that specific instance. The full list lives in `CLAUDE.md` → "Protected actions"; nothing here should be treated as a substitute for reading it.
@@ -122,9 +111,9 @@ A few rules that shape how every task runs, regardless of skill or level — sum
 
 ---
 
-## Two decisions this template doesn't make for you
+## Decisions made for this project
 
-`CLAUDE.md` ships with defaults for both, but they're genuinely yours to set, not inferred:
+Two things the AI-Wrapper template deliberately leaves open — recorded here, and in `CLAUDE.md`'s changelog footer:
 
-- **Branch-tier depth.** The full four-tier model above assumes you may eventually run more than one agent and more than one in-flight release at once. If that's overkill today, collapse it to `main → task/*` and say so in `CLAUDE.md`'s changelog footer.
-- **Backlog tool.** Skill 14's read-open/write-gated policy and definition-of-done requirement are tool-agnostic — Trello, Jira, Linear, GitHub Projects, or a plain markdown file all work. Pick one (or decide you don't need one yet) and record it.
+- **Branch-tier depth.** Kept the full four-tier model (`main → release/* → feat/* → task/*`) as shipped.
+- **Backlog tool.** GitHub Issues, per repository.
