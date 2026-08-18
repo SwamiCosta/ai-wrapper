@@ -2,10 +2,15 @@
 #
 # This root repository tracks shared governance documentation only
 # (CLAUDE.md, ARCHITECTURE.md, .claude/). Every subproject folder below
-# is its own independent Git repository.
+# is meant to become its own independent Git repository, exactly like
+# each product repo in the workspace this template was extracted from.
+#
+# Rename backend/ and frontend/ to your real project names as you set
+# them up, and add each one's real name here as you go — the entries
+# below are the two starter placeholders this template ships with.
 
-tax-engine-api/
-tax-engine-web/
+backend/
+frontend/
 
 # When you add a third subproject folder (see .claude/skills/05-project-level-skills.md
 # for when a project deserves its own skills folder), add its path here too:
