@@ -1,4 +1,4 @@
-# Tax Calculator Engine — Agent Context
+# AI-Wrapper — Agent Context
 
 > This file provides context for AI agents operating in this project.
 > Read this file entirely before executing any task.
@@ -8,16 +8,24 @@
 
 ## What this project is
 
-Tax Calculator Engine — a system that calculates U.S. federal income tax (2025 tax
-year) from a contributor's filing status, gross income, standard deduction, and
-withholding, returning a detailed per-bracket breakdown. See `ARCHITECTURE.md` for
-the full business rules and domain model; that document is the authoritative source
-for the calculation, not this file.
+This is a starter template, not a finished project. It ships the *governance shell* for running a real software project with AI coding agents: a three-tier autonomy model, a set of workspace-wide process skills, and two renameable subproject placeholders. It ships with no product logic, no domain content, and no opinion about what you're building — that part is entirely yours to fill in.
 
-This project is built on the AI-Wrapper governance template: the three-tier autonomy
-model, protected actions, and process skills below are the template's shell, kept
-as-is. The **Getting started** checklist that used to appear in this section has been
-completed — see the changelog footer at the bottom of this file for what was decided.
+If you are an agent reading this file for the first time in a template that hasn't been customized yet, see **Getting started**, below, before doing anything else.
+
+---
+
+## Getting started
+
+Do these in order, once, before the first real task:
+
+1. **Fill in `ARCHITECTURE.md`** with this project's actual decisions — what it is, its stack, its subprojects, its phased plan. Until this is done, no agent has enough context to work safely; treat a blank ARCHITECTURE.md as a blocking gap, not an optional nicety.
+2. **Rename `backend/` and `frontend/`** (or delete the one you don't need, or add a third sibling) to match your real projects. Rename their agent files and personas (`BackEnd-Dev`, `FrontEnd-Dev`) to whatever you'd like to call them — the names carry no behavior, only the Level 1/2/3 shape underneath does.
+3. **Update the root `.gitignore`** so it excludes each renamed subproject folder — each one is meant to become its own independent Git repository, the same way this template's own `backend/` and `frontend/` placeholders are excluded (see Workspace structure, below).
+4. **Write down your project's objective and core business rules** directly in `ARCHITECTURE.md` or this file — never leave an agent to infer them. See Skill 13 (Ask Before Inferring): a business rule, scope boundary, or missing spec value is exactly the kind of fact only you can supply.
+5. **Decide, and record here, whether you want the full four-tier branching model below or a simpler two-tier `main → task/*`.** This template ships with the full model on the assumption you may eventually run more than one agent and more than one in-flight release at a time; if that's overkill for now, delete `release/*` and `feat/*` from the Git branching strategy section and say so in the changelog footer.
+6. **Pick a backlog tool** (or decide you don't need one yet) and record it in Skill 14. Any tracker works — the governance rule is tool-agnostic.
+
+Once these are done, delete this section or mark it complete in the changelog footer — it describes a one-time setup, not an ongoing rule.
 
 ---
 
@@ -25,7 +33,7 @@ completed — see the changelog footer at the bottom of this file for what was d
 
 ```
 ai-wrapper/
-├── ARCHITECTURE.md               ← Tax Calculator Engine's architecture
+├── ARCHITECTURE.md               ← your project's architecture (fill this in)
 ├── CLAUDE.md                     ← this file
 ├── .claude/
 │   ├── CLAUDE.md                 ← this file (same file, referenced from subprojects)
@@ -33,12 +41,12 @@ ai-wrapper/
 │   ├── skills/                   ← one file per skill (01-document-editing.md, 02-database-migration.md, ...)
 │   └── agents/
 │       └── overseer.md           ← Level 3 — global architect
-├── tax-engine-api/                ← backend, own Git repository
+├── backend/                       ← rename to your real backend project
 │   └── .claude/agents/
-│       └── taxengineapi-dev.md   ← Level 2 — backend developer
-└── tax-engine-web/                ← frontend (stretch goal), own Git repository
+│       └── backend-dev.md        ← Level 2 — backend developer
+└── frontend/                      ← rename to your real frontend project
     └── .claude/agents/
-        └── taxengineweb-dev.md   ← Level 2 — frontend developer
+        └── frontend-dev.md       ← Level 2 — frontend developer
 ```
 
 The root is a Git repository that tracks shared documentation only (`ARCHITECTURE.md`, `.claude/` files). Each subproject folder is meant to become its own independent Git repository — excluded from the root via `.gitignore` (see the template committed at the root of this repo). When cloning this project on a new machine, clone each subproject separately into its corresponding subdirectory.
@@ -47,7 +55,7 @@ The root is a Git repository that tracks shared documentation only (`ARCHITECTUR
 
 ## Language rules
 
-- This project's chosen language is **English** — all code, documentation, comments, commit messages, file names, and generated content land in English.
+- All code, documentation, comments, commit messages, file names, and generated content should be in a single consistent language for the whole project — pick one and record it here once you have.
 - Communicating with agents in a different language than the project's chosen one is fine; the artifacts they produce should still land in the project's language.
 
 ---
@@ -261,8 +269,8 @@ If the PR is already merged: switch to `main`, pull, and open a new branch. Neve
 
 | Name | Type | Language | Status |
 |------|------|----------|--------|
-| tax-engine-api | Backend REST API | Java 17 / Spring Boot | MVP in progress |
-| tax-engine-web | Frontend | HTML / vanilla JS | Planned (stretch goal) |
+| backend | (rename) | (fill in) | Placeholder |
+| frontend | (rename) | (fill in) | Placeholder |
 
 ---
 
@@ -290,7 +298,7 @@ MAJOR.EPIC.FEATURE
 Follow Skill 01 — always via PR, never a direct edit, and Level 3 only.
 
 **Where is the shared task backlog?**
-GitHub Issues, per repository (root governance issues in `ai-wrapper`, backend work in `tax-engine-api`, frontend work in `tax-engine-web`). See Skill 14. Any agent may read it anytime; writing to it (creating or moving cards, updating status) requires the user's explicit request in that session.
+Record your chosen tool here once you've picked one (see Skill 14). Any agent may read it anytime; writing to it (creating or moving cards, updating status) requires the user's explicit request in that session.
 
 **My agent file says to "signal" or "notify" another agent — do I open a PR and stop, or keep going as that agent right now?**
 Stop and produce a handoff report by default — see Skill 11. Only continue immediately, in the same session, as the target agent if the user has explicitly authorized that specific handoff.
@@ -304,5 +312,3 @@ No. Adding, removing, or upgrading any dependency is a protected action and requ
 ---
 
 *Last updated: template created 2026-08-14 by Overseer, extracted from a production multi-project workspace's governance documentation. Fill in your own changelog entries here going forward — see Skill 01 for how doc changes get proposed and reviewed.*
-
-*2026-08-17 — Overseer: completed the "Getting started" checklist for the Tax Calculator Engine project. Decisions recorded: kept the full four-tier branching model as-is (no simplification); backlog tool is GitHub Issues per repository; project language is English; `backend`/`frontend` placeholders renamed to `tax-engine-api`/`tax-engine-web` (see `ARCHITECTURE.md` for the full business rules and 2025 tax data this project runs on). Note: the placeholders were never actually present in this checkout despite the bootstrap commit message describing them — `tax-engine-api` and `tax-engine-web` were created fresh as new independent repositories rather than renamed.*
