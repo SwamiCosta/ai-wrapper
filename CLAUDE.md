@@ -253,6 +253,18 @@ If the PR is already merged: switch to `main`, pull, and open a new branch. Neve
 - Names in the project's chosen language: variables, functions, classes, files, branches
 - Follow whatever language-specific conventions your stack uses — record them here once your stack is chosen
 - Descriptive and meaningful names — avoid abbreviations
+- No inline or block comments in code, under any circumstance. The only exception is doc-comment documentation (Javadoc or the equivalent for the language in use) on classes and methods/functions — kept concise and self-contained (see Skill 21)
+
+---
+
+## Shared artifact rules
+
+Any content an agent produces for someone outside the current session — a PR description or comment, a backlog/board card, source code itself — is a different category of output than the conversation that produced it, and is governed accordingly:
+
+- **Human-facing documents** (PR descriptions/comments, backlog/board card updates, any other shared write-up of completed work) must be self-contained: they explain what was built, changed, or decided in plain terms, never in the session's own contextual shorthand (an internal working name for a rule, a step, a layer) that means nothing to a reader who wasn't in that conversation.
+- **Code comments** are never written by an agent, with the single exception of concise, self-contained doc-comments (Javadoc or equivalent) on classes and methods. Task narrative, rationale, and history belong in the task's own document, not inline in the file.
+
+See Skill 21 for the full rule and worked examples.
 
 ---
 
@@ -312,3 +324,5 @@ No. Adding, removing, or upgrading any dependency is a protected action and requ
 ---
 
 *Last updated: template created 2026-08-14 by Overseer, extracted from a production multi-project workspace's governance documentation. Fill in your own changelog entries here going forward — see Skill 01 for how doc changes get proposed and reviewed.*
+
+- 2026-09-15 — Overseer: added "Shared artifact rules" (self-contained PRs/board cards, no code comments except concise self-contained doc-comments) and new Skill 21 (Context-Free Shared Artifacts).
