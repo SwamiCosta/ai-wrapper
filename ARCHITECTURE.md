@@ -7,6 +7,19 @@
 
 ---
 
+## Index
+
+- [Overview](#overview)
+- [Subprojects](#subprojects)
+- [backend / frontend](#backend-rename-this-section-to-match) *(rename this entry and the anchors below to match once the subprojects are renamed — see `CLAUDE.md` → "Getting started")*
+- [Business rules and domain](#business-rules-and-domain)
+- [Architectural Principles](#architectural-principles)
+- [Inter-service Communication](#inter-service-communication)
+- [DevOps](#devops)
+- [Development Order](#development-order)
+
+---
+
 ## Overview
 
 *One paragraph: what is this project, who is it for, and what does it do. Replace this placeholder before any agent starts real work.*
@@ -73,5 +86,7 @@
 | 1 | | | Planned |
 
 ---
+
+- 2026-09-18 — Overseer: added an Index section for navigation (Skill 22).
 
 *Last updated: template created 2026-08-14. Replace this changelog with your own project's history going forward — one entry per structural decision, newest first, per Skill 06.*

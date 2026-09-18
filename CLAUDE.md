@@ -6,6 +6,28 @@
 
 ---
 
+## Index
+
+- [What this project is](#what-this-project-is)
+- [Getting started](#getting-started)
+- [Workspace structure](#workspace-structure)
+- [Language rules](#language-rules)
+- [Agent levels](#agent-levels)
+- [Protected actions](#protected-actions)
+- [Handling blocked actions](#handling-blocked-actions)
+- [Detection and resolution are separate steps](#detection-and-resolution-are-separate-steps)
+- [Git branching strategy](#git-branching-strategy)
+- [Agent operational rules](#agent-operational-rules)
+- [General coding rules](#general-coding-rules)
+- [Shared artifact rules](#shared-artifact-rules)
+- [Documentation maintenance rules](#documentation-maintenance-rules)
+- [Testing rules](#testing-rules)
+- [Subprojects and their languages](#subprojects-and-their-languages)
+- [Versioning strategy](#versioning-strategy)
+- [FAQ for agents](#faq-for-agents)
+
+---
+
 ## What this project is
 
 This is a starter template, not a finished project. It ships the *governance shell* for running a real software project with AI coding agents: a three-tier autonomy model, a set of workspace-wide process skills, and two renameable subproject placeholders. It ships with no product logic, no domain content, and no opinion about what you're building — that part is entirely yours to fill in.
@@ -268,6 +290,16 @@ See Skill 21 for the full rule and worked examples.
 
 ---
 
+## Documentation maintenance rules
+
+- Treat a growing document's length as a cost: when new information supersedes or extends something already written, edit that text in place — add only the delta, don't duplicate or re-explain a topic already covered
+- Exception: a changelog/"Last updated" footer is an intentional append-only history log, not subject to the rule above
+- Once a document is long enough that scanning it end-to-end stops being the fastest way to find something, give it a navigable index (a table of contents linking to each section) — see this file's own [Index](#index) and `ARCHITECTURE.md`'s
+
+See Skill 22 for the full rule and rationale.
+
+---
+
 ## Testing rules
 
 - All new code must have tests
@@ -326,3 +358,4 @@ No. Adding, removing, or upgrading any dependency is a protected action and requ
 *Last updated: template created 2026-08-14 by Overseer, extracted from a production multi-project workspace's governance documentation. Fill in your own changelog entries here going forward — see Skill 01 for how doc changes get proposed and reviewed.*
 
 - 2026-09-15 — Overseer: added "Shared artifact rules" (self-contained PRs/board cards, no code comments except concise self-contained doc-comments) and new Skill 21 (Context-Free Shared Artifacts).
+- 2026-09-18 — Overseer: added "Documentation maintenance rules" (edit in place over duplicating, index growing documents), new Skill 22 (Lean Documentation Maintenance), and an Index to this file.
