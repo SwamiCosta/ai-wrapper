@@ -2,7 +2,7 @@
 
 This file is an index, not a procedure document — the actual rules live one-per-file under `.claude/skills/`. See `CLAUDE.md` — "Mandatory reading order" for when to read this file versus an individual skill.
 
-## The 21 skills
+## The 22 skills
 
 | # | Skill | One-line scope |
 |---|-------|-----------------|
@@ -27,6 +27,7 @@ This file is an index, not a procedure document — the actual rules live one-pe
 | 19 | Dependency Verification | Never propose a package or version that hasn't just been confirmed to exist |
 | 20 | Completion Evidence | "Done" claims require the actual command/output, not an assertion |
 | 21 | Context-Free Shared Artifacts | Self-contained PRs/board cards; no code comments except concise self-contained doc-comments |
+| 22 | Lean Documentation Maintenance | Edit in place over duplicating; keep growing docs concise and indexed for partial reading |
 
 ---
 
@@ -34,10 +35,10 @@ This file is an index, not a procedure document — the actual rules live one-pe
 
 | Role | Level | Always | Situational (trigger-based) |
 |------|-------|--------|------------------------------|
-| Overseer | 3 | 05, 10, 11, 12, 13 | 01, 02, 03, 04, 06, 07, 08, 09, 14, 15, 16, 17, 18, 19, 20, 21 |
-| *(project) architect* | 3 | 05, 08, 10, 11, 12, 13 | 01, 02, 03, 04, 06, 07, 09, 14, 15, 16, 17, 18, 19, 20, 21 |
-| BackEnd-Dev / FrontEnd-Dev | 2 | 05, 08, 13 | 02, 03, 06, 07, 09, 10, 11, 12, 15, 16, 17, 18, 19, 20, 21 |
-| *(any Level 1 scribe you add)* | 1 | 05, 13 | 10, 11, 15, 16, 20, 21 (rarely — most Level 1 work is narrow enough not to trigger these) |
+| Overseer | 3 | 05, 10, 11, 12, 13 | 01, 02, 03, 04, 06, 07, 08, 09, 14, 15, 16, 17, 18, 19, 20, 21, 22 |
+| *(project) architect* | 3 | 05, 08, 10, 11, 12, 13 | 01, 02, 03, 04, 06, 07, 09, 14, 15, 16, 17, 18, 19, 20, 21, 22 |
+| BackEnd-Dev / FrontEnd-Dev | 2 | 05, 08, 13 | 02, 03, 06, 07, 09, 10, 11, 12, 15, 16, 17, 18, 19, 20, 21, 22 |
+| *(any Level 1 scribe you add)* | 1 | 05, 13 | 10, 11, 15, 16, 20, 21, 22 (rarely — most Level 1 work is narrow enough not to trigger these) |
 
 This table is the source of truth for which skills apply to which role — an agent file's own `Mandatory reading` list should match it. When you add a new persona, add its row here in the same pass, not as a follow-up.
 
@@ -71,3 +72,4 @@ Use this to decide, in the moment, whether a situational skill applies to the ta
 | About to report a task as done | 20 |
 | About to write a PR description/comment or update a backlog/board card describing completed work | 21 |
 | The task adds or edits a comment or doc-comment in source code | 21 |
+| About to add to or edit `CLAUDE.md`, `ARCHITECTURE.md`, `SKILLS.md`, or any other document that accumulates over time | 22 |
