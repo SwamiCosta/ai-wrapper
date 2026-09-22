@@ -8,7 +8,7 @@ aniannoth-overview/
 keynor-core/
 summon-unity/
 
-# RAQA-based tester repos, one per active subproject — added as each is set up:
-# overview-tester/
-# core-tester/
-# unity-tester/
+# RAQA-based tester repos, one per active subproject
+overview-tester/
+core-tester/
+unity-tester/
