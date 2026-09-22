@@ -35,10 +35,15 @@ This file is an index, not a procedure document — the actual rules live one-pe
 
 | Role | Level | Always | Situational (trigger-based) |
 |------|-------|--------|------------------------------|
-| Overseer | 3 | 05, 10, 11, 12, 13 | 01, 02, 03, 04, 06, 07, 08, 09, 14, 15, 16, 17, 18, 19, 20, 21, 22 |
-| *(project) architect* | 3 | 05, 08, 10, 11, 12, 13 | 01, 02, 03, 04, 06, 07, 09, 14, 15, 16, 17, 18, 19, 20, 21, 22 |
-| BackEnd-Dev / FrontEnd-Dev | 2 | 05, 08, 13 | 02, 03, 06, 07, 09, 10, 11, 12, 15, 16, 17, 18, 19, 20, 21, 22 |
-| *(any Level 1 scribe you add)* | 1 | 05, 13 | 10, 11, 15, 16, 20, 21, 22 (rarely — most Level 1 work is narrow enough not to trigger these) |
+| Overseer | 3 | 05, 10, 11, 12, 13 | 01, 02, 04, 06, 07, 08, 09, 14, 15, 16, 17, 18, 19, 20, 21, 22 |
+| Reporter | 1 | 05, 10, 13 | 11, 15, 20, 21 |
+| overview-architect / core-architect / unity-architect | 3 | 05, 08, 10, 11, 12, 13 | 01, 02, 04, 06, 07, 09, 14, 15, 16, 17, 18, 19, 20, 21, 22 |
+| overview-executor / core-executor / unity-executor | 2 | 05, 08, 13 | 02, 04, 06, 07, 09, 10, 11, 12, 14, 15, 16, 18, 19, 20, 21, 22 |
+| core-dba | 2 | 05, 08, 13 | 02, 06, 09, 10, 11, 12, 15, 16, 18, 19, 20, 21, 22 |
+| overview-scribe | 1 | 05, 13 | 10, 11, 15, 16, 20, 21, 22 |
+| overview-tester / core-tester / unity-tester | 2 | 05, 08, 13, 17 | 04, 06, 09, 10, 11, 12, 15, 16, 18, 19, 20, 21, 22 |
+
+**Skill 03 (Test Coverage) does not apply to any role in this project** — this project authors no unit tests (see root `CLAUDE.md` — Testing rules), so it's omitted from every row above rather than listed as merely situational.
 
 This table is the source of truth for which skills apply to which role — an agent file's own `Mandatory reading` list should match it. When you add a new persona, add its row here in the same pass, not as a follow-up.
 

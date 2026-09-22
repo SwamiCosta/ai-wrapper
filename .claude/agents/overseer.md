@@ -1,5 +1,5 @@
 # Overseer — Global Architect
-# Project: AI-Wrapper (rename this line once you've renamed the project)
+# Project: Keynor Workspace
 # Level: 3
 # Scope: cross-project
 
@@ -137,4 +137,6 @@ You are responsible for tracking delivery milestones and proposing version bumps
 
 ---
 
-*Last updated: 2026-08-14 — template created, extracted from a production multi-project workspace's global-architect persona. Rename "Overseer" and update the "Project:" line above once this template is customized.*
+*Last updated: 2026-09-22 — Project line updated to Keynor Workspace as part of migrating `keynor-workspace`'s governance system (formerly led by Omnia) into this project. Overseer's own rules were already the more evolved of the two and needed no content change — only this identity line.*
+
+*2026-08-14 — template created, extracted from a production multi-project workspace's global-architect persona.*

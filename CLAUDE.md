@@ -9,7 +9,6 @@
 ## Index
 
 - [What this project is](#what-this-project-is)
-- [Getting started](#getting-started)
 - [Workspace structure](#workspace-structure)
 - [Language rules](#language-rules)
 - [Agent levels](#agent-levels)
@@ -30,55 +29,43 @@
 
 ## What this project is
 
-This is a starter template, not a finished project. It ships the *governance shell* for running a real software project with AI coding agents: a three-tier autonomy model, a set of workspace-wide process skills, and two renameable subproject placeholders. It ships with no product logic, no domain content, and no opinion about what you're building — that part is entirely yours to fill in.
+The Keynor Workspace: an ecosystem of applications built around an original fantasy/fiction universe, transforming accumulated stories into literary narratives, game systems, and interactive experiences — while doubling as a learning environment for software architecture, AI-assisted development, and DevOps practices. See `ARCHITECTURE.md` for the full subproject and domain breakdown.
 
-If you are an agent reading this file for the first time in a template that hasn't been customized yet, see **Getting started**, below, before doing anything else.
-
----
-
-## Getting started
-
-Do these in order, once, before the first real task:
-
-1. **Fill in `ARCHITECTURE.md`** with this project's actual decisions — what it is, its stack, its subprojects, its phased plan. Until this is done, no agent has enough context to work safely; treat a blank ARCHITECTURE.md as a blocking gap, not an optional nicety.
-2. **Rename `backend/` and `frontend/`** (or delete the one you don't need, or add a third sibling) to match your real projects. Rename their agent files and personas (`BackEnd-Dev`, `FrontEnd-Dev`) to whatever you'd like to call them — the names carry no behavior, only the Level 1/2/3 shape underneath does.
-3. **Update the root `.gitignore`** so it excludes each renamed subproject folder — each one is meant to become its own independent Git repository, the same way this template's own `backend/` and `frontend/` placeholders are excluded (see Workspace structure, below).
-4. **Write down your project's objective and core business rules** directly in `ARCHITECTURE.md` or this file — never leave an agent to infer them. See Skill 13 (Ask Before Inferring): a business rule, scope boundary, or missing spec value is exactly the kind of fact only you can supply.
-5. **Decide, and record here, whether you want the full four-tier branching model below or a simpler two-tier `main → task/*`.** This template ships with the full model on the assumption you may eventually run more than one agent and more than one in-flight release at a time; if that's overkill for now, delete `release/*` and `feat/*` from the Git branching strategy section and say so in the changelog footer.
-6. **Pick a backlog tool** (or decide you don't need one yet) and record it in Skill 14. Any tracker works — the governance rule is tool-agnostic.
-
-Once these are done, delete this section or mark it complete in the changelog footer — it describes a one-time setup, not an ongoing rule.
+This project runs on the `ai-wrapper` governance shell, migrated 2026-09-22 from an earlier, project-specific version of the same shell (`keynor-workspace`). The "Getting started" checklist that normally lives here is complete — see the changelog footer for what was decided at migration time.
 
 ---
 
 ## Workspace structure
 
 ```
-ai-wrapper/
-├── ARCHITECTURE.md               ← your project's architecture (fill this in)
+ai-wrapper - keynor/
+├── ARCHITECTURE.md               ← ecosystem architecture and subproject overview
 ├── CLAUDE.md                     ← this file
 ├── .claude/
-│   ├── CLAUDE.md                 ← this file (same file, referenced from subprojects)
 │   ├── SKILLS.md                 ← index of skills — see .claude/skills/ for the actual procedures
 │   ├── skills/                   ← one file per skill (01-document-editing.md, 02-database-migration.md, ...)
 │   └── agents/
-│       └── overseer.md           ← Level 3 — global architect
-├── backend/                       ← rename to your real backend project
+│       ├── overseer.md           ← Level 3 — global architect
+│       └── reporter.md           ← Level 1 — read-only cross-project analyst
+├── aniannoth-overview/            ← frontend, own Git repo
 │   └── .claude/agents/
-│       └── backend-dev.md        ← Level 2 — backend developer
-└── frontend/                      ← rename to your real frontend project
-    └── .claude/agents/
-        └── frontend-dev.md       ← Level 2 — frontend developer
+├── keynor-core/                   ← backend, own Git repo
+│   └── .claude/agents/
+├── summon-unity/                  ← game client, own Git repo
+│   └── .claude/agents/
+├── overview-tester/                ← RAQA-based integration/Playwright tests for aniannoth-overview, own Git repo
+├── core-tester/                    ← RAQA-based integration/Playwright tests for keynor-core, own Git repo
+└── unity-tester/                   ← RAQA-based integration/Playwright tests for summon-unity, own Git repo
 ```
 
-The root is a Git repository that tracks shared documentation only (`ARCHITECTURE.md`, `.claude/` files). Each subproject folder is meant to become its own independent Git repository — excluded from the root via `.gitignore` (see the template committed at the root of this repo). When cloning this project on a new machine, clone each subproject separately into its corresponding subdirectory.
+The root is a Git repository that tracks shared documentation only (`ARCHITECTURE.md`, `.claude/` files). Each subproject and each tester repo above is its own independent Git repository — excluded from the root via `.gitignore`. `summon-unity-legacy/` is deliberately outside this workspace entirely — see `ARCHITECTURE.md` — Subprojects. When cloning this project on a new machine, clone each subproject and tester repo separately into its corresponding subdirectory.
 
 ---
 
 ## Language rules
 
-- All code, documentation, comments, commit messages, file names, and generated content should be in a single consistent language for the whole project — pick one and record it here once you have.
-- Communicating with agents in a different language than the project's chosen one is fine; the artifacts they produce should still land in the project's language.
+- This project's chosen language is **English**: all code, documentation, comments, commit messages, file names, and generated content must be in English.
+- Communicating with agents in a different language is fine — the user may use Portuguese. The artifacts produced must still land in English.
 
 ---
 
@@ -111,10 +98,11 @@ Focused on feature development within a controlled scope.
 - Read database data via SELECT with a hard limit of 100 rows
 - Add new files to the project structure
 
+**Project-specific amendment — Executor DB autonomy:** in this project, the Level 2 "Executor" role in each subproject (e.g. `overview-executor`, `core-executor`, `unity-executor`) may write both data and structural database changes (seeds, migrations, schema changes) directly, without handing off to another agent. This is a genuine capability grant, not a bypass of governance — the action stays on the Protected Actions list below (see Database), so it still requires the standard stop → report → wait → explicit user authorization sequence every time; the only thing this amendment changes is that the *same* agent executes once authorized, instead of escalating to a different one. This does not extend to any other Level 2 role (e.g. a tester agent) unless that role's own file says so.
+
 **Not permitted:**
 - Merge, rebase, or delete any branch
 - Force push to any branch
-- Any write operation to the database (INSERT, UPDATE, DELETE)
 - SELECT queries without a row limit or with a limit above 100
 - Changes to configuration files or dependencies (requires authorization)
 - Any infrastructure interaction
@@ -155,6 +143,8 @@ The following actions are **never executed without explicit user authorization**
 - Running database migrations
 - Any database schema restructuring (ADD COLUMN, DROP TABLE, etc.)
 - Database seed, reset, or restore operations
+
+*Amendment for this project:* each subproject's Executor role (see Level 2, above) is capable of performing the first four of these directly, but they remain on this list — the stop/report/wait sequence still applies every time; the Executor is simply the one who then carries it out, rather than escalating to a different agent.
 
 ### Infrastructure
 - Any interaction with cloud services (deploy, teardown, scaling)
@@ -302,10 +292,10 @@ See Skill 22 for the full rule and rationale.
 
 ## Testing rules
 
-- All new code must have tests
-- Unit tests for domain/business logic
-- Integration tests for external-boundary code (database, network, filesystem)
-- Record your project's actual test file naming convention here once decided
+- **No unit tests are authored or maintained in this project, in any subproject.** If an agent encounters a legacy unit test (carried over from before this migration), it may delete it as part of its normal work — no separate authorization needed for the deletion itself, still through the normal `task/* → PR → main` flow like any other change.
+- All test coverage is integration and/or UI (Playwright) testing, via a dedicated `<stem>-tester` agent — one per active subproject, each its own sibling repository built from `raqa-tester` (github.com/SwamiCosta/raqa-tester), adapted through configuration rather than by modifying the framework core.
+- The tester agent authors its test cycles from specification only — it must not read the implementation it is testing — and is also responsible for running the suite and judging pass/fail. It never modifies a non-test file.
+- A DB-specialist role may exist per subproject (see e.g. `core-dba`) for cases needing dedicated seed/migration handling or CRUD-API-based content authoring instead of raw SQL — optional, added only where a subproject actually needs it.
 
 ---
 
@@ -313,8 +303,13 @@ See Skill 22 for the full rule and rationale.
 
 | Name | Type | Language | Status |
 |------|------|----------|--------|
-| backend | (rename) | (fill in) | Placeholder |
-| frontend | (rename) | (fill in) | Placeholder |
+| aniannoth-overview | Frontend | TypeScript / React | Active |
+| keynor-core | Backend | Java | Active |
+| summon-unity | Game client | C# (Unity 6) | Active |
+| overview-tester / core-tester / unity-tester | Integration/Playwright tests | Java (RAQA) | Active |
+| keynor-rpg, keynor-stories, summon-server, summon-game-engine | — | TBD | Planned, not scaffolded |
+
+See `ARCHITECTURE.md` — Subprojects for the full picture, including why `summon-unity-legacy` is intentionally not in this table.
 
 ---
 
@@ -342,7 +337,13 @@ MAJOR.EPIC.FEATURE
 Follow Skill 01 — always via PR, never a direct edit, and Level 3 only.
 
 **Where is the shared task backlog?**
-Record your chosen tool here once you've picked one (see Skill 14). Any agent may read it anytime; writing to it (creating or moving cards, updating status) requires the user's explicit request in that session.
+Trello — carried over from `keynor-workspace` practice (task cards were already referenced there, e.g. `unity-1` through `unity-5` in `summon-unity`'s history). Any agent may read it anytime; writing to it (creating or moving cards, updating status) requires the user's explicit request in that session. Confirm the exact board with the user if it's not already obvious from context — this was inferred from evidence in the migrated material, not stated directly during migration.
+
+**Can an Executor agent write to the database directly?**
+Yes, in this project — see Level 2's "Executor DB autonomy" amendment and the Database Protected Actions note. It still requires per-instance explicit authorization; it just doesn't need to hand off to a different agent to carry it out.
+
+**Why doesn't `<subproject>` have any unit tests?**
+This project doesn't use them — see Testing rules. Coverage comes from the subproject's own `<stem>-tester` agent (RAQA-based integration/Playwright tests), not unit tests.
 
 **My agent file says to "signal" or "notify" another agent — do I open a PR and stop, or keep going as that agent right now?**
 Stop and produce a handoff report by default — see Skill 11. Only continue immediately, in the same session, as the target agent if the user has explicitly authorized that specific handoff.
@@ -359,3 +360,4 @@ No. Adding, removing, or upgrading any dependency is a protected action and requ
 
 - 2026-09-15 — Overseer: added "Shared artifact rules" (self-contained PRs/board cards, no code comments except concise self-contained doc-comments) and new Skill 21 (Context-Free Shared Artifacts).
 - 2026-09-18 — Overseer: added "Documentation maintenance rules" (edit in place over duplicating, index growing documents), new Skill 22 (Lean Documentation Maintenance), and an Index to this file.
+- 2026-09-22 — Overseer: migrated `keynor-workspace`'s governance system into this project, completing "Getting started". Subprojects renamed to their real names (`aniannoth-overview`, `keynor-core`, `summon-unity`); three active repos physically relocated here from `keynor-workspace`. Language rule decided (English artifacts, any communication language). Full four-tier branching model kept as-is. New project-wide testing policy: no unit tests anywhere; coverage moves to a dedicated RAQA-based `<stem>-tester` agent per subproject, each its own sibling repo. Level 2 amended: each subproject's Executor role may write DB data/structure directly (no handover), staying a Protected Action requiring per-instance authorization. Root roster: `Overseer` (carried over) plus new `reporter.md` (Level 1, read-only cross-project analyst, replacing `keynor-workspace`'s Ocaelum). Backlog tool recorded as Trello, based on evidence in the migrated material.
